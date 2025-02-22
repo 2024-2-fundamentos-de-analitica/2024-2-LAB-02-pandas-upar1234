@@ -5,7 +5,7 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
-
+import pandas as pd
 def pregunta_13():
     """
     Si la columna `c0` es la clave en los archivos `tbl0.tsv` y `tbl2.tsv`,
@@ -20,3 +20,17 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
+    t0 = pd.read_csv("tbl0.tsv", sep='\t')
+    t2 = pd.read_csv(r'C:\Universidad\Sistemas\Fundamentos de analítica\Labs\\2024-2-LAB-02-pandas-upar1234\\files\input\tbl2.tsv', sep='\t')
+    t0 = t0.loc[:,['c0','c1']]
+    t2 = t2.loc[:,['c0', 'c5b']]
+    df = pd.merge(
+        t0,
+        t2,
+        on='c0'
+    )
+    df = df.groupby('c1')['c5b'].sum()
+    print(df)
+    return df
+    
+pregunta_13()

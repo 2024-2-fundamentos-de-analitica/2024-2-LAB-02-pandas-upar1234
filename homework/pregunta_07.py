@@ -4,13 +4,12 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
+import pandas as pd
 
 def pregunta_07():
     """
     Calcule la suma de la `c2` por cada letra de la `c1` del archivo
     `tbl0.tsv`.
-
     Rta/
     c1
     A    37
@@ -20,3 +19,8 @@ def pregunta_07():
     E    67
     Name: c2, dtype: int64
     """
+    df = pd.read_csv("tbl0.tsv", sep = '\t')
+    c1 = df.groupby('c1')['c2'].sum()
+    print(c1)
+    return c1
+pregunta_07()
