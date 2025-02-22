@@ -4,8 +4,8 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 `tbl2.tsv`. En este laboratorio solo puede utilizar las funciones y 
 librerias de pandas para resolver las preguntas.
 """
-
 import pandas as pd
+
 def pregunta_13():
     """
     Si la columna `c0` es la clave en los archivos `tbl0.tsv` y `tbl2.tsv`,
@@ -20,17 +20,17 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
-    t0 = pd.read_csv("tbl0.tsv", sep='\t')
-    t2 = pd.read_csv(r'C:\Universidad\Sistemas\Fundamentos de analítica\Labs\\2024-2-LAB-02-pandas-upar1234\\files\input\tbl2.tsv', sep='\t')
-    t0 = t0.loc[:,['c0','c1']]
-    t2 = t2.loc[:,['c0', 'c5b']]
-    df = pd.merge(
-        t0,
-        t2,
-        on='c0'
-    )
-    df = df.groupby('c1')['c5b'].sum()
-    print(df)
-    return df
+        # Cargar los archivos tbl0.tsv y tbl2.tsv
+    tbl0 = pd.read_csv('files/input/tbl0.tsv', sep='\t')
+    tbl2 = pd.read_csv('files/input/tbl2.tsv', sep='\t')
     
-pregunta_13()
+    # Hacer un merge de tbl0 y tbl2 usando 'c0' como clave
+    merged_df = pd.merge(tbl0, tbl2, on='c0')
+    
+    # Agrupar por 'c1' y calcular la suma de 'c5b'
+    result = merged_df.groupby('c1')['c5b'].sum()
+    
+    return result
+
+if __name__ == "__main__":
+    print(pregunta_13())

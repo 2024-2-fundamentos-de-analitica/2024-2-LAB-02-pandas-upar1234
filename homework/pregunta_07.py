@@ -10,6 +10,7 @@ def pregunta_07():
     """
     Calcule la suma de la `c2` por cada letra de la `c1` del archivo
     `tbl0.tsv`.
+
     Rta/
     c1
     A    37
@@ -19,8 +20,15 @@ def pregunta_07():
     E    67
     Name: c2, dtype: int64
     """
-    df = pd.read_csv("tbl0.tsv", sep = '\t')
-    c1 = df.groupby('c1')['c2'].sum()
-    print(c1)
-    return c1
-pregunta_07()
+    df = pd.read_csv('files/input/tbl0.tsv', sep='\t')
+
+    # Contar registros por cada valor único en la columna c1
+
+    resultado = df.groupby('c1')['c2'].sum()
+    
+    
+    return resultado
+
+
+if __name__ == "__main__":
+    print(pregunta_07())
